@@ -20,8 +20,20 @@ app.debug = True
 # say "www.google.com" -- google.com is the "host", and with nothing else
 # specified you get "/".
 @app.route('/')
+@app.route('/index.html')
+def index():
+    return app.send_static_file('html/index.html')
+
+
+# Responses can be pretty minimal:
+@app.route('/minimal')
 def main():
     return "We're up!"
+
+
+@app.route('/gifs/<gif>')
+def gif(gif):
+    return app.send_static_file('gifs/' + gif)
 
 
 # Another resource; this one can take a parameter. Notice that while our first
