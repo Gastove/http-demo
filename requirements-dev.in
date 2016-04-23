@@ -1,0 +1,13 @@
+# Dep compilation and pinning
+pip-compile
+
+# Testing
+pytest
+
+# Development tools
+autopep8
+rope
+importmagic
+yapf
+flake8
+
