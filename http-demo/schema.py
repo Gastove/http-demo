@@ -1,6 +1,7 @@
 from datetime import datetime
 
-from sqlalchemy import Column, Integer, String, DateTime, Text, ForeignKey, Enum
+from sqlalchemy import (Column, Integer, String,
+                        DateTime, Text, ForeignKey, Enum)
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
 
@@ -56,7 +57,8 @@ class Preference(Base, IdPrimaryKeyMixin, DateTimeMixin):
 
     person_id = Column(Integer, ForeignKey('people.id'))
     food_id = Column(Integer, ForeignKey('food.id'))
-    attitude = Column('attitude', Enum('love', 'hate', 'meh', name='attitudes'))
+    attitude = Column('attitude',
+                      Enum('love', 'hate', 'meh', name='attitudes'))
 
     person = relationship('Person', back_populates='preferences')
     food = relationship('Food', back_populates='preferences')
