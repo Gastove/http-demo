@@ -59,7 +59,7 @@ class Preference(Base, IdPrimaryKeyMixin, DateTimeMixin):
     attitude = Column('attitude', Enum('love', 'hate', 'meh', name='attitudes'))
 
     person = relationship('Person', back_populates='preferences')
-    food = relationship('Food', back_populates='food')
+    food = relationship('Food', back_populates='preferences')
 
     def __repr__(self):
         tpl = 'Preference<{person_id} feels {feel} about {food_id}>'
@@ -70,7 +70,7 @@ class Preference(Base, IdPrimaryKeyMixin, DateTimeMixin):
 
 
 Person.preferences = relationship('Preference', order_by=Preference.id,
-                                  back_populates='preferences')
+                                  back_populates='person')
 
 Food.preferences = relationship('Preference', order_by=Preference.id,
-                                back_populates='preferences')
+                                back_populates='food')

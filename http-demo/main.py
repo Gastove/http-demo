@@ -2,6 +2,9 @@
 
 from flask import Flask, render_template, request
 
+import db
+import schema
+
 # This is a tinkertoy web app. Please enjoy.
 
 # Here we make our application; we'll use this to set routes, among other
@@ -61,6 +64,35 @@ def yousaid():
         choice = None
     return render_template("bevchoice.html", bev=choice)
 
+
+# Utility method for creating the tables in the database
+def bootstrap():
+    schema.Base.metadata.create_all(db.engine)
+
+
+@app.route('/addperson')
+def add_a_person():
+    return render_template('new_person_form.html')
+
+
+@app.route('/newperson', methods=['POST'])
+def add_person():
+    session = db.get_session()
+    new_person = schema.Person(
+        first_name=request.form['fname'],
+        last_name=request.form['lname']
+    )
+    session.add(new_person)
+    session.commit()
+
+    return 'Okay maaaade a person!'
+
+
+@app.route('/listpeople')
+def list_people():
+    session = db.get_session()
+    res = session.query(schema.Person).all()
+    return res
 
 if __name__ == '__main__':
     app.run()
