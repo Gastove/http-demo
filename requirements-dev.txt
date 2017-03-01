@@ -4,18 +4,23 @@
 #
 #    pip-compile --output-file requirements-dev.txt requirements-dev.in
 #
-
+appdirs==1.4.2            # via setuptools
 autopep8==1.2.2
+click==6.7                # via pip-tools
+first==2.0.1              # via pip-tools
 flake8==2.5.4
 importmagic==0.1.7
 mccabe==0.4.0             # via flake8
+packaging==16.8           # via setuptools
 pep8==1.7.0               # via autopep8, flake8
+pip-tools==1.8.0
 py==1.4.31                # via pytest
 pyflakes==1.0.0           # via flake8
+pyparsing==2.1.10         # via packaging
 pytest==2.9.1
 rope==0.10.3
+six==1.10.0               # via packaging, pip-tools, setuptools
 yapf==0.7.1
 
-# The following packages are commented out because they are
-# considered to be unsafe in a requirements file:
+# The following packages are considered to be unsafe in a requirements file:
 # setuptools                # via importmagic

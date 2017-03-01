@@ -1,5 +1,5 @@
 # Dep compilation and pinning
-pip-compile
+pip-tools
 
 # Testing
 pytest
@@ -10,4 +10,3 @@ rope
 importmagic
 yapf
 flake8
-
